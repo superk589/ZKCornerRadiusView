@@ -1,5 +1,5 @@
 # ZKCornerRadiusView
-A subclass of UIImageView to avoid offscreen-rendering
+A subclass of UIImageView to avoid offscreen-rendering when setting cornerRadius
 
 ## CocoaPods:
 ```
