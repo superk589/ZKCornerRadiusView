@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ZKCornerRadiusView: UIImageView {
+open class ZKCornerRadiusView: UIImageView {
     private var hasObserver = false
     private var roundedRectImage:UIImage? {
         didSet {
@@ -34,7 +34,7 @@ class ZKCornerRadiusView: UIImageView {
         return nil
     }
     
-    var zk_cornerRadius:CGFloat = 0 {
+    open var zk_cornerRadius:CGFloat = 0 {
         didSet {
             if !hasObserver {
                 addObserver(self, forKeyPath: "image", options: .new, context: nil)
@@ -45,7 +45,7 @@ class ZKCornerRadiusView: UIImageView {
             }
         }
     }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let image = change?[.newKey] as? UIImage {
             if roundedRectImage != image {
                 roundedRectImage = makeRoundedRectImage()
