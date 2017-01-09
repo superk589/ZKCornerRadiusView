@@ -18,6 +18,13 @@ end
 ## Usage
 ```swift
 let view = ZKCornerRadiusView()
-view.zk_cornerRadius = 10
+view.zk_backgroundColor = UIColor.yellow
+view.zk_borderColor = UIColor.blue
+view.zk_borderWidth = 4
+
+// if only want a one color image(with border maybe), use this method manually.
+// view.zk_render()
+
+// when set image to the view, all the attributes set above will works.
 view.image = UIImage.init(named: imageName)
 ```

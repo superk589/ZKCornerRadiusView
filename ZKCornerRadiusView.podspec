@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "ZKCornerRadiusView"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A subclass of UIImageView to avoid offscreen-rendering."
   s.description  = <<-DESC
                    A subclass of UIImageView to avoid offscreen-rendering.
