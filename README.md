@@ -25,6 +25,6 @@ view.zk_borderWidth = 4
 // if only want a one color image(with border maybe), use this method manually.
 // view.zk_render()
 
-// when set image to the view, all the attributes set above will works.
+// when set image to the view, all the attributes set above will work.
 view.image = UIImage.init(named: imageName)
 ```
