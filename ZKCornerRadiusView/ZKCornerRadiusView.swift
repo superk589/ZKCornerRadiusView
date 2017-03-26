@@ -17,70 +17,63 @@ open class ZKCornerRadiusView: UIImageView {
     }
     
     private func makeRoundedRectImage() -> UIImage? {
+        
         defer {
             UIGraphicsEndImageContext()
         }
+        
         let size = self.bounds.size
         let rect = self.bounds
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        let context:CGContext! = UIGraphicsGetCurrentContext()
-        if context == nil {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
         
         // 绘制背景部分
-        let backgroundPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk_cornerRadius)
-        zk_backgroundColor.set()
+        let backgroundPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk.cornerRadius)
+        zk.backgroundColor.set()
         backgroundPath.fill()
         
         // 渲染图片
-        let cornerPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk_cornerRadius)
+        let cornerPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk.cornerRadius)
         cornerPath.addClip()
         context.addPath(cornerPath.cgPath)
         self.layer.render(in: context)
         
         // 绘制边框
-        zk_borderColor.set()
-        cornerPath.lineWidth = zk_borderWidth
+        zk.borderColor.set()
+        cornerPath.lineWidth = zk.borderWidth
         cornerPath.stroke()
         
         // 生成新图片
         if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
             return newImage
+        } else {
+            return nil
         }
-        return nil
     }
     
+    public struct Attribute {
+        public var cornerRadius: CGFloat = 0
+        public var borderWidth: CGFloat = 0
+        public var borderColor: UIColor = UIColor.clear
+        public var backgroundColor: UIColor = UIColor.clear
+    }
     
-    open var zk_cornerRadius: CGFloat = 0 {
+    open var zk: Attribute = Attribute() {
         didSet {
             addObserver()
         }
     }
     
-    open var zk_borderWidth: CGFloat = 0 {
-        didSet {
-            addObserver()
-        }
-    }
-    open var zk_borderColor: UIColor = UIColor.clear {
-        didSet {
-            addObserver()
-        }
-    }
-    open var zk_backgroundColor: UIColor = UIColor.clear {
-        didSet {
-            addObserver()
-        }
-    }
-    
-    open func zk_render() {
+    open func render() {
         roundedRectImage = makeRoundedRectImage()
     }
     
     private func addObserver() {
         if !hasObserver {
-            addObserver(self, forKeyPath: "image", options: .new, context: nil)
+            addObserver(self, forKeyPath: #keyPath(image), options: .new, context: nil)
             hasObserver = true
         }
         if self.image != nil {
@@ -95,9 +88,10 @@ open class ZKCornerRadiusView: UIImageView {
             }
         }
     }
+    
     deinit {
         if hasObserver {
-            removeObserver(self, forKeyPath: "image")
+            removeObserver(self, forKeyPath: #keyPath(image))
         }
     }
 }
