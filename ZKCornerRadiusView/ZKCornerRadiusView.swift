@@ -9,22 +9,24 @@
 import UIKit
 
 open class ZKCornerRadiusView: UIImageView {
-    private var hasObserver = false
-    private var roundedRectImage:UIImage? {
-        didSet {
-            self.image = roundedRectImage
+    
+    open override var image: UIImage? {
+        set {
+            super.image = makeRoundedRectImage(newValue)
+        }
+        get {
+            return super.image
         }
     }
     
-    private func makeRoundedRectImage() -> UIImage? {
-        
-        defer {
-            UIGraphicsEndImageContext()
-        }
+    private func makeRoundedRectImage(_ image: UIImage?) -> UIImage? {
         
         let size = self.bounds.size
         let rect = self.bounds
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        defer {
+            UIGraphicsEndImageContext()
+        }
         
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
@@ -39,7 +41,7 @@ open class ZKCornerRadiusView: UIImageView {
         let cornerPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk.cornerRadius)
         cornerPath.addClip()
         context.addPath(cornerPath.cgPath)
-        self.layer.render(in: context)
+        image?.draw(in: rect)
         
         // 绘制边框
         zk.borderColor.set()
@@ -47,11 +49,8 @@ open class ZKCornerRadiusView: UIImageView {
         cornerPath.stroke()
         
         // 生成新图片
-        if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
-            return newImage
-        } else {
-            return nil
-        }
+        return UIGraphicsGetImageFromCurrentImageContext()
+        
     }
     
     public struct Attribute {
@@ -61,37 +60,10 @@ open class ZKCornerRadiusView: UIImageView {
         public var backgroundColor: UIColor = UIColor.clear
     }
     
-    open var zk: Attribute = Attribute() {
-        didSet {
-            addObserver()
-        }
-    }
+    open var zk: Attribute = Attribute()
     
     open func render() {
-        roundedRectImage = makeRoundedRectImage()
+        image = makeRoundedRectImage(image)
     }
     
-    private func addObserver() {
-        if !hasObserver {
-            addObserver(self, forKeyPath: #keyPath(image), options: .new, context: nil)
-            hasObserver = true
-        }
-        if self.image != nil {
-            roundedRectImage = makeRoundedRectImage()
-        }
-    }
-    
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let image = change?[.newKey] as? UIImage {
-            if roundedRectImage != image {
-                roundedRectImage = makeRoundedRectImage()
-            }
-        }
-    }
-    
-    deinit {
-        if hasObserver {
-            removeObserver(self, forKeyPath: #keyPath(image))
-        }
-    }
 }
