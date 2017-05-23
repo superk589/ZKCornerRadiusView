@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         // 如果只想要一张纯色带边框的图片 可以单独调用此方法
         aView.render()
         
+        aView.zk.backgroundColor = UIColor.blue
+//        aView.render()
         // 当设置了image之后 会自动根据之前设置好的各项属性切图
         aView.image = #imageLiteral(resourceName: "icon.png")
         

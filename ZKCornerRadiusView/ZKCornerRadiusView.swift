@@ -10,8 +10,10 @@ import UIKit
 
 open class ZKCornerRadiusView: UIImageView {
     
+    private var usingCustomImage = false
     open override var image: UIImage? {
         set {
+            usingCustomImage = true
             super.image = makeRoundedRectImage(newValue)
         }
         get {
@@ -41,7 +43,10 @@ open class ZKCornerRadiusView: UIImageView {
         let cornerPath = UIBezierPath.init(roundedRect: rect, cornerRadius: zk.cornerRadius)
         cornerPath.addClip()
         context.addPath(cornerPath.cgPath)
-        image?.draw(in: rect)
+        
+        if usingCustomImage {
+            image?.draw(in: rect)
+        }
         
         // 绘制边框
         zk.borderColor.set()
@@ -63,7 +68,7 @@ open class ZKCornerRadiusView: UIImageView {
     open var zk: Attribute = Attribute()
     
     open func render() {
-        image = makeRoundedRectImage(image)
+        super.image = makeRoundedRectImage(image)
     }
-    
+
 }
