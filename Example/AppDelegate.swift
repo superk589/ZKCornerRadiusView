@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  ZKCornerRadiusView
+//  Example
 //
-//  Created by zzk on 2016/10/29.
-//  Copyright © 2016年 zzk. All rights reserved.
+//  Created by zzk on 08/09/2017.
+//  Copyright © 2017 zzk. All rights reserved.
 //
 
 import UIKit

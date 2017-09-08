@@ -1,12 +1,13 @@
 //
 //  ViewController.swift
-//  ZKCornerRadiusView
+//  Example
 //
-//  Created by zzk on 2016/10/29.
-//  Copyright © 2016年 zzk. All rights reserved.
+//  Created by zzk on 08/09/2017.
+//  Copyright © 2017 zzk. All rights reserved.
 //
 
 import UIKit
+import ZKCornerRadiusView
 
 class ViewController: UIViewController {
 
@@ -24,18 +25,12 @@ class ViewController: UIViewController {
         aView.render()
         
         aView.zk.backgroundColor = UIColor.blue
-//        aView.render()
+        //        aView.render()
         // 当设置了image之后 会自动根据之前设置好的各项属性切图
         aView.image = #imageLiteral(resourceName: "icon.png")
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
