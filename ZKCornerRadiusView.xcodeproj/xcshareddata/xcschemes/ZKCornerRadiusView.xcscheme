@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "12C1B6941F621C8600C4417C"
+               BlueprintIdentifier = "12C1B6BC1F621D3900C4417C"
                BuildableName = "ZKCornerRadiusView.framework"
                BlueprintName = "ZKCornerRadiusView"
                ReferencedContainer = "container:ZKCornerRadiusView.xcodeproj">
@@ -33,7 +33,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "12C1B6941F621C8600C4417C"
+            BlueprintIdentifier = "12C1B6BC1F621D3900C4417C"
             BuildableName = "ZKCornerRadiusView.framework"
             BlueprintName = "ZKCornerRadiusView"
             ReferencedContainer = "container:ZKCornerRadiusView.xcodeproj">
@@ -57,7 +57,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "12C1B6941F621C8600C4417C"
+            BlueprintIdentifier = "12C1B6BC1F621D3900C4417C"
             BuildableName = "ZKCornerRadiusView.framework"
             BlueprintName = "ZKCornerRadiusView"
             ReferencedContainer = "container:ZKCornerRadiusView.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "12C1B6941F621C8600C4417C"
+            BlueprintIdentifier = "12C1B6BC1F621D3900C4417C"
             BuildableName = "ZKCornerRadiusView.framework"
             BlueprintName = "ZKCornerRadiusView"
             ReferencedContainer = "container:ZKCornerRadiusView.xcodeproj">
